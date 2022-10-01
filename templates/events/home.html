@@ -1,0 +1,7 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+    <h1>Welcome home, django dude!</h1>
+    <p>Year: {{ year }}, month: {{ month }} ({{ month_number }}).</p>
+    <p>{{ clndr|safe }}</p>
+{% endblock %}
