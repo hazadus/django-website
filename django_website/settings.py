@@ -110,7 +110,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# http://www.i18nguy.com/unicode/language-identifiers.html
+LANGUAGE_CODE = 'ru-RU'
 
 # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 TIME_ZONE = 'Europe/Moscow'

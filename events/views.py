@@ -4,6 +4,8 @@ from django.shortcuts import render
 import calendar
 from calendar import HTMLCalendar
 
+from .models import Event
+
 
 def home(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
     month = month.title()
@@ -15,5 +17,19 @@ def home(request, year=datetime.now().year, month=datetime.now().strftime('%B'))
         'year': year,
         'month': month,
         'month_number': month_number,
+        'clndr': clndr
+    })
+
+
+def all_events(request):
+    event_list = Event.objects.all()
+
+    month = datetime.now().strftime('%B').title()
+    month_number = list(calendar.month_name).index(month)
+
+    clndr = HTMLCalendar().formatmonth(datetime.now().year, month_number)
+
+    return render(request, 'events/all_events.html', {
+        'event_list': event_list,
         'clndr': clndr
     })

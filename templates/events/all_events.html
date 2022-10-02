@@ -1,0 +1,45 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+    <div class="row g-5">
+        <div class="col-md-8">
+            <div class="shadow-lg p-3 mb-5 bg-body rounded" style="margin-top:  16px;">
+                <h3>All events list</h3>
+                <p>
+                    {% for event in event_list %}
+                    <div class="card">
+                        <div class="card-header">
+                            {{ event.venue.name }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.name }}</h5>
+                            <p class="card-text">
+                                <b>Date:</b> {{ event.event_date }}<br/>
+                                <b>Manager:</b> {{ event.manager }}<br/>
+                                {{ event.description }}<br/>
+                                <b>Attendees:</b>
+                                {% for attendee in event.attendees.all %}
+                                    {{ attendee.fullname }}&nbsp;
+                                {% endfor %}
+                            </p>
+                            <a href="{{ event.venue.website }}" class="btn btn-primary">Сайт {{ event.venue.name }}</a>
+                        </div>
+                    </div>
+                    <br/>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="position-sticky" style="top: 5rem;">
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="fst-italic">Calendar</h4>
+                    <p class="mb-0">
+                        {{ clndr|safe }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
