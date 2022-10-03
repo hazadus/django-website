@@ -20,8 +20,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link" href="{% url 'all_venues' %}">Places</a>
                         <a class="nav-link" href="{% url 'all_events' %}">Events</a>
+                        <a class="nav-link" href="#">Favorites</a>
                         <a class="nav-link" href="{% url 'home' '2021' 'March' %}">March 2021</a>
                     </div>
                 </div>
@@ -38,6 +39,7 @@
                 </ul>
                 <ul class="nav col-md-4 justify-content-end">
                     <li class="nav-item"><a href="{% url 'home' %}" class="nav-link px-2 text-muted">Home</a></li>
+                    <li class="nav-item"><a href="{% url 'all_venues' %}" class="nav-link px-2 text-muted">Places</a></li>
                     <li class="nav-item"><a href="{% url 'all_events' %}" class="nav-link px-2 text-muted">Events</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
                 </ul>

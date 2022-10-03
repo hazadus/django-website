@@ -4,7 +4,7 @@ from django.shortcuts import render
 import calendar
 from calendar import HTMLCalendar
 
-from .models import Event
+from .models import Event, Venue
 
 
 def home(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
@@ -32,4 +32,12 @@ def all_events(request):
     return render(request, 'events/all_events.html', {
         'event_list': event_list,
         'clndr': clndr
+    })
+
+
+def all_venues(request):
+    venue_list = Venue.objects.all()
+
+    return render(request, 'events/all_venues.html', {
+        'venue_list': venue_list
     })

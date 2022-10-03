@@ -1,0 +1,47 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+    <div class="row g-5">
+        <div class="col-md-8">
+            <div class="shadow-lg p-3 mb-5 bg-body rounded" style="margin-top:  16px;">
+                <h3>All places</h3>
+                <p>
+                    {% for venue in venue_list %}
+                    <div class="card">
+                        <div class="card-header">
+                            {{ venue.name }}, id={{ venue.id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ venue.name }}</h5>
+                            {% if venue.tags.all %}
+                                <p>
+                                    Метки:
+                                    {% for tag in venue.tags.all %}
+                                        {{ tag }}
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+                            <p class="card-text">
+                                {{ venue.description }}
+                            </p>
+                            {{ venue.yandex_map_widget|safe }}
+                            {{ venue.yandex_reviews_widget|safe }}
+                        </div>
+                    </div>
+                    <br/>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="position-sticky" style="top: 5rem;">
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="fst-italic">See also</h4>
+                    <p class="mb-0">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
