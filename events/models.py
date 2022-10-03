@@ -1,4 +1,7 @@
+from datetime import datetime
+
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Tag(models.Model):
@@ -19,6 +22,7 @@ class Venue(models.Model):
     website = models.URLField('Website URL', blank=True)
     banner_pic = models.CharField('Banner Picture Filename', max_length=64, blank=True)
     email = models.EmailField('Contact Email', blank=True)
+    date_added = models.DateTimeField('Date Added', blank=False, default=datetime.now())
     tags = models.ManyToManyField(Tag, blank=True)
     yandex_map_widget = models.TextField('Yandex Map Widget', blank=True)
     yandex_reviews_widget = models.TextField('Yandex Reviews Widget', blank=True)
@@ -27,7 +31,7 @@ class Venue(models.Model):
         return self.name
 
 
-class User(models.Model):
+class MyUser(models.Model):
     username = models.CharField('User Login Name', max_length=32)
     fullname = models.CharField('User Full Name', max_length=32)
     email = models.EmailField('User Email')
@@ -39,10 +43,10 @@ class User(models.Model):
 class Event(models.Model):
     name = models.CharField('Event Name', max_length=128)
     event_date = models.DateTimeField('Event Date')
-    venue = models.ForeignKey(Venue, blank=True, null=True, on_delete=models.DO_NOTHING)
-    manager = models.CharField("Who's In Charge", max_length=64)
+    venue = models.ForeignKey(Venue, blank=True, null=True, on_delete=models.SET_NULL)
+    manager = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
     description = models.TextField('Event Description', blank=True)
-    attendees = models.ManyToManyField(User, blank=True)
+    attendees = models.ManyToManyField(MyUser, blank=True)
 
     def __str__(self):
         return self.name
