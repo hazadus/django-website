@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 import calendar
 from calendar import HTMLCalendar
 
-from .models import Event, Venue
+from .models import Event, Venue, Tag
 from .forms import VenueForm
 
 
@@ -60,3 +60,12 @@ def add_venue(request):
             'form': form,
             'submitted': submitted
         })
+
+
+def show_venue(request, venue_id):
+    venue = Venue.objects.get(pk=venue_id)
+    tags = Tag.objects.all()
+    return render(request, 'events/show_venue.html', {
+        'venue': venue,
+        'tags': tags
+    })

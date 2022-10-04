@@ -22,10 +22,9 @@
                                 </p>
                             {% endif %}
                             <p class="card-text">
-                                {{ venue.description }}
+                                {{ venue.description }}<br/>
+                                <a href="{% url 'show_venue' venue.id %}">Details...</a>
                             </p>
-                            {{ venue.yandex_map_widget|safe }}
-                            {{ venue.yandex_reviews_widget|safe }}
                         </div>
                     </div>
                     <br/>
