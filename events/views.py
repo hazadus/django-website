@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 import calendar
 from calendar import HTMLCalendar
@@ -68,6 +68,18 @@ def show_venue(request, venue_id):
     return render(request, 'events/show_venue.html', {
         'venue': venue,
         'tags': tags
+    })
+
+
+def edit_venue(request, venue_id):
+    venue = Venue.objects.get(pk=venue_id)
+    form = VenueForm(request.POST or None, instance=venue)
+    if form.is_valid():
+        form.save()
+        return redirect('show_venue', venue.id)
+    return render(request, 'events/edit_venue.html', {
+        'venue': venue,
+        'form': form
     })
 
 

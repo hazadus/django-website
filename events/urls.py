@@ -6,7 +6,8 @@ urlpatterns = [
     path('<int:year>/<str:month>/', views.home, name='home'),
     path('events/', views.all_events, name='all_events'),
     path('venues/', views.all_venues, name='all_venues'),
-    path('add_venue/', views.add_venue, name='add_venue'),
     path('venue/<venue_id>/', views.show_venue, name='show_venue'),
-    path('search/', views.search_venues, name='search_venues')
+    path('add_venue/', views.add_venue, name='add_venue'),
+    path('edit_venue/<venue_id>/', views.edit_venue, name='edit_venue'),
+    path('search/', views.search_venues, name='search_venues'),
 ]
