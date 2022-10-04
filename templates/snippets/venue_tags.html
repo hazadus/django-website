@@ -1,0 +1,10 @@
+{% if venue.tags.all %}
+<p>
+    <div class="tags small">
+    <!-- &#x1F3F7; -->
+    {% for tag in venue.tags.all %}
+        <a title="{{ tag.name }}" href="#" class="color2">{{ tag.name }}</a>
+    {% endfor %}
+    </div>
+</p>
+{% endif %}

@@ -69,3 +69,15 @@ def show_venue(request, venue_id):
         'venue': venue,
         'tags': tags
     })
+
+
+def search_venues(request):
+    if request.method == 'POST':
+        search_text = request.POST['search_text']
+        search_results = Venue.objects.filter(name__contains=search_text)
+        return render(request, 'events/search_venues.html', {
+            'search_text': search_text,
+            'search_results': search_results
+        })
+    else:
+        return render(request, 'events/search_venues.html', {})

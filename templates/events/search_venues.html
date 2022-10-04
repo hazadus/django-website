@@ -1,17 +1,19 @@
 {% extends 'events/base.html' %}
-{% block title %}All venues{% endblock %}
 
 {% block content %}
     <div class="row g-5">
         <div class="col-md-8">
             <div class="shadow-lg p-3 mb-5 bg-body rounded" style="margin-top:  16px;">
-                <h3>All places</h3>
-                <p>
-                    {% for venue in venue_list %}
+                {% if search_text %}
+                <h3>Search results for venues</h3>
+                <h4 style="font-style: italic;">You were searching for: {{ search_text }}</h4>
+                    {% for venue in search_results %}
                         {% include 'snippets/venue_card.html' with venue=venue %}
                         <br/>
                     {% endfor %}
-                </p>
+                {% else %}
+                    <h4 style="font-style: italic;">Search string was empty.</h4>
+                {% endif %}
             </div>
         </div>
 

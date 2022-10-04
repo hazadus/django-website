@@ -1,0 +1,13 @@
+<div class="card">
+    <div class="card-header">
+        {{ venue.name }}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ venue.name }}</h5>
+        {% include 'snippets/venue_tags.html' with venue=venue %}
+        <p class="card-text">
+            {{ venue.description }}<br/>
+            <a href="{% url 'show_venue' venue.id %}">Details...</a>
+        </p>
+    </div>
+</div>
