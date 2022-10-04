@@ -1,10 +1,12 @@
 from datetime import datetime
 
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 import calendar
 from calendar import HTMLCalendar
 
 from .models import Event, Venue
+from .forms import VenueForm
 
 
 def home(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
@@ -41,3 +43,20 @@ def all_venues(request):
     return render(request, 'events/all_venues.html', {
         'venue_list': venue_list
     })
+
+
+def add_venue(request):
+    form = VenueForm()
+    submitted = False
+    if request.method == 'POST':
+        form = VenueForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_venue/?submitted=True')
+    else:
+        if 'submitted' in request.GET:
+            submitted = True
+        return render(request, 'events/add_venue.html', {
+            'form': form,
+            'submitted': submitted
+        })

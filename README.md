@@ -24,7 +24,21 @@ server {
     }
 }
 ```
-Then run gunicorn:
+Check `nginx` config file, then restart `nginx` service:
+```bash
+$ sudo nginx -t
+$ sudo service nginx restart
+```
+Make DB migrations:
+```bash
+$ ./manage.py makemigrations
+$ ./manage.py migrate
+```
+Create admin account:
+```bash
+$ ./django-admin createsuperuser
+```
+Then run `gunicorn`:
 ```bash
 $ cd /usr/projects/django-website
 $ source bin/activate
