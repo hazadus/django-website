@@ -77,7 +77,16 @@ $ kill -9 PID
 ```
 After killing `gunicorn`'s process, follow instructions from section above to start it agagin.
 
+There's also a way to restart `gunicorn` with just one command line (replace `django-website` wuth your actual project
+folder name):
+```bash
+ps aux | grep gunicorn | grep django-website | awk '{ print $2 }' | xargs kill -HUP
+```
+This command parses gunicorn PIDs from `ps aux` output, then executes `kill -HUP` on each PID. `gunicorn` restars when
+HUP signal is received ([read more on this here](https://docs.gunicorn.org/en/latest/signals.html#reload-the-configuration)).
+
 ## References
 - [Django Documentation](https://docs.djangoproject.com/en/4.1/)
 - [CodeMy Django Wednesdays Series](https://www.youtube.com/playlist?list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy)
 - [How to use Django with Gunicorn](https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/gunicorn/)
+- [Gunicorn Signal Handling](https://docs.gunicorn.org/en/latest/signals.html#reload-the-configuration)
