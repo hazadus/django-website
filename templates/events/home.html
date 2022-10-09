@@ -5,8 +5,21 @@
     <div class="row g-5">
         <div class="col-md-8">
             <div class="shadow-lg p-3 mb-5 bg-body rounded" style="margin-top:  16px;">
-                <h3>Welcome home, django dude!</h3>
-                <p>Year: {{ year }}, month: {{ month }} ({{ month_number }}).</p>
+                <h3>Welcome to Django Events demo site!</h3>
+                <br/>
+                <h4>List of all events</h4>
+                <ul>
+                    {% for event in event_list %}
+                        <li>{{ event }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h4>List of all places</h4>
+                <ul>
+                    {% for venue in venue_list %}
+                        <li><a href="{% url 'show_venue' venue.id %}">{{ venue }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
 

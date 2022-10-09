@@ -15,10 +15,15 @@ def home(request, year=datetime.now().year, month=datetime.now().strftime('%B'))
 
     clndr = HTMLCalendar().formatmonth(year, month_number)
 
+    event_list = Event.objects.all()
+    venue_list = Venue.objects.all()
+
     return render(request, 'events/home.html', {
         'year': year,
         'month': month,
         'month_number': month_number,
+        'event_list': event_list,
+        'venue_list': venue_list,
         'clndr': clndr
     })
 
