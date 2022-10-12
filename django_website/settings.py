@@ -30,7 +30,7 @@ if os.getenv('DJANGO_DEBUG') == '1':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['85.193.89.177']
 
 
 # Application definition
