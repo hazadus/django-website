@@ -6,7 +6,7 @@ import calendar
 from calendar import HTMLCalendar
 
 from .models import Event, Venue, Tag
-from .forms import VenueForm
+from .forms import VenueForm, EventForm
 
 
 def home(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
@@ -51,7 +51,6 @@ def all_venues(request):
 
 
 def add_venue(request):
-    form = VenueForm()
     submitted = False
     if request.method == 'POST':
         form = VenueForm(request.POST)
@@ -59,12 +58,14 @@ def add_venue(request):
             form.save()
             return HttpResponseRedirect('/add_venue/?submitted=True')
     else:
+        form = VenueForm()
         if 'submitted' in request.GET:
             submitted = True
-        return render(request, 'events/add_venue.html', {
-            'form': form,
-            'submitted': submitted
-        })
+
+    return render(request, 'events/add_venue.html', {
+        'form': form,
+        'submitted': submitted
+    })
 
 
 def show_venue(request, venue_id):
@@ -98,3 +99,21 @@ def search_venues(request):
         })
     else:
         return render(request, 'events/search_venues.html', {})
+
+
+def add_event(request):
+    submitted = False
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_event/?submitted=True')
+    else:
+        form = EventForm()
+        if 'submitted' in request.GET:
+            submitted = True
+
+    return render(request, 'events/add_event.html', {
+        'form': form,
+        'submitted': submitted
+    })

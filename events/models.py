@@ -37,7 +37,7 @@ class MyUser(models.Model):
     email = models.EmailField('User Email')
 
     def __str__(self):
-        return f'{self.fullname} ({self.username})'
+        return f'{self.fullname}'
 
 
 class Event(models.Model):

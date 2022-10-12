@@ -30,8 +30,8 @@ if os.getenv('DJANGO_DEBUG') == '1':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['85.193.89.177']
-
+ALLOWED_HOSTS = []
+# CSRF_TRUSTED_ORIGINS = ['http://85.193.89.177','http://*.127.0.0.1']
 
 # Application definition
 

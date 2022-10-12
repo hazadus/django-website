@@ -55,7 +55,16 @@ not in remote SSH connection):
 $ scp ./db.sqlite3 username@1.2.3.4:~/projects/django-website/
 ```
 ### Starting server
-Run `gunicorn` using following commands.
+**To run locally** in development environment:
+```bash
+$ export DJANGO_SECRET="django-insecure-secret-code-goes-here-****************"
+$ export DJANGO_DEBUG=1
+$ cd ~/projects/django-website
+$ source bin/activate
+$ ./manage.py runserver
+```
+
+**Server mode**: run `gunicorn` using following commands.
 You can save these commands to bash script file, say `run_bot.sh`, just don't forget to make it executable with
 `chmod a+x run_bot.sh`. Next time, you can run your Django site by typing `run_bot.sh`, assuming you're in
 projects directory. 
