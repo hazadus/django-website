@@ -29,7 +29,7 @@ def home(request, year=datetime.now().year, month=datetime.now().strftime('%B'))
 
 
 def all_events(request):
-    event_list = Event.objects.all()
+    event_list = Event.objects.all().order_by('-event_date')  # Sort by field in reverse order
 
     month = datetime.now().strftime('%B').title()
     month_number = list(calendar.month_name).index(month)
