@@ -24,6 +24,7 @@
                             </p>
                             <a href="{{ event.venue.website }}" class="btn btn-primary">Сайт {{ event.venue.name }}</a>
                             <a href="{% url 'edit_event' event.id %}" class="btn btn-primary">Edit event</a>
+                            <a href="{% url 'delete_event' event.id %}" class="btn btn-danger">Delete event</a>
                         </div>
                     </div>
                     <br/>

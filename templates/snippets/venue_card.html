@@ -7,7 +7,8 @@
         {% include 'snippets/venue_tags.html' with venue=venue %}
         <p class="card-text">
             {{ venue.description }}<br/>
-            <a href="{% url 'show_venue' venue.id %}">Details...</a>
+            <a href="{% url 'show_venue' venue.id %}" class="btn btn-primary">Details...</a>
+            <a href="{% url 'delete_venue' venue.id %}" class="btn btn-danger">Delete venue</a>
         </p>
     </div>
 </div>

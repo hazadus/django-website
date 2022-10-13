@@ -13,7 +13,7 @@ def home(request, year=datetime.now().year, month=datetime.now().strftime('%B'))
     month = month.title()
     month_number = list(calendar.month_name).index(month)
 
-    clndr = HTMLCalendar().formatmonth(year, month_number)
+    calender = HTMLCalendar().formatmonth(year, month_number)
 
     event_list = Event.objects.all()
     venue_list = Venue.objects.all()
@@ -24,7 +24,7 @@ def home(request, year=datetime.now().year, month=datetime.now().strftime('%B'))
         'month_number': month_number,
         'event_list': event_list,
         'venue_list': venue_list,
-        'clndr': clndr
+        'clndr': calender
     })
 
 
@@ -34,11 +34,11 @@ def all_events(request):
     month = datetime.now().strftime('%B').title()
     month_number = list(calendar.month_name).index(month)
 
-    clndr = HTMLCalendar().formatmonth(datetime.now().year, month_number)
+    calender = HTMLCalendar().formatmonth(datetime.now().year, month_number)
 
     return render(request, 'events/all_events.html', {
         'event_list': event_list,
-        'clndr': clndr
+        'clndr': calender
     })
 
 
@@ -129,3 +129,15 @@ def edit_event(request, event_id):
         'event': event,
         'form': form
     })
+
+
+def delete_event(request, event_id):
+    event = Event.objects.get(pk=event_id)
+    event.delete()
+    return redirect('all_events')
+
+
+def delete_venue(request, venue_id):
+    venue = Venue.objects.get(pk=venue_id)
+    venue.delete()
+    return redirect('all_venues')

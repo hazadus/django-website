@@ -1,0 +1,7 @@
+# created by virtualenv automatically
+bin/
+lib/
+.idea/
+*.cfg
+db.sqlite3
+*.sh
