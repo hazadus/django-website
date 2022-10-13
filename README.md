@@ -99,3 +99,4 @@ HUP signal is received ([read more on this here](https://docs.gunicorn.org/en/la
 - [CodeMy Django Wednesdays Series](https://www.youtube.com/playlist?list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy)
 - [How to use Django with Gunicorn](https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/gunicorn/)
 - [Gunicorn Signal Handling](https://docs.gunicorn.org/en/latest/signals.html#reload-the-configuration)
+- [ReportLab User's Guide](https://www.reportlab.com/docs/reportlab-userguide.pdf)

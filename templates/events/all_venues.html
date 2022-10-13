@@ -9,6 +9,7 @@
                 <p>
                     <a href="{% url 'all_venues_text' %}" class="btn btn-primary">Download TXT</a>
                     <a href="{% url 'all_venues_csv' %}" class="btn btn-primary">Download CSV</a>
+                    <a href="{% url 'all_venues_pdf' %}" class="btn btn-primary">Download PDF</a>
                 </p>
                 <p>
                     {% for venue in venue_list %}

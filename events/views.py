@@ -1,9 +1,17 @@
 from datetime import datetime
 import csv
+import io
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from django.http import HttpResponse  # For different kinds of response
+from django.http import HttpResponse  # For different kinds of response - TXT/CSV
+from django.http import FileResponse  # For PDF download
+from reportlab.pdfgen import canvas  # PDF-related stuff
+from reportlab.lib.units import inch  # PDF-related stuff
+from reportlab.lib.pagesizes import A4  # PDF-related stuff
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+
 import calendar
 from calendar import HTMLCalendar
 
@@ -82,6 +90,34 @@ def all_venues_csv(request):  # Generate CSV file
         writer.writerow([venue.name, venue.address, venue.website])
 
     return response
+
+
+def all_venues_pdf(request):  # Generate PDF file
+    # Create bytestream buffer
+    buffer = io.BytesIO()
+    # Create a canvas
+    canv = canvas.Canvas(buffer, pagesize=A4, bottomup=0)
+    # Create a text object
+    text_object = canv.beginText()
+    text_object.setTextOrigin(inch, inch)
+    pdfmetrics.registerFont(TTFont('FreeSans', 'FreeSans.ttf'))  # This font has cyrillic symbols in it!
+    text_object.setFont('FreeSans', 14)
+
+    # Add some lines of text
+    venues = Venue.objects.all()
+    for venue in venues:
+        text_object.textLine(venue.name)
+        text_object.textLine(venue.address)
+        text_object.textLine(venue.website)
+        text_object.textLine('')
+
+    # Finish em up
+    canv.drawText(text_object)
+    canv.showPage()
+    canv.save()
+    buffer.seek(0)
+
+    return FileResponse(buffer, as_attachment=True, filename='venues.pdf')
 
 
 def add_venue(request):
