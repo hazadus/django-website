@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse  # For different kinds of response
 import calendar
 from calendar import HTMLCalendar
 
@@ -48,6 +49,22 @@ def all_venues(request):
     return render(request, 'events/all_venues.html', {
         'venue_list': venue_list
     })
+
+
+def all_venues_text(request):  # Generate text file
+    response = HttpResponse(content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename=venues.txt'
+
+    venues_list = list()
+    venues = Venue.objects.all()
+    for venue in venues:
+        venues_list.append('{venue}\n{address}\n\n'.format(
+            venue=venue.name,
+            address=venue.address
+        ))
+
+    response.writelines(venues_list)
+    return response
 
 
 def add_venue(request):
