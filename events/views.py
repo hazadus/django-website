@@ -1,4 +1,5 @@
 from datetime import datetime
+import csv
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
@@ -64,6 +65,22 @@ def all_venues_text(request):  # Generate text file
         ))
 
     response.writelines(venues_list)
+    return response
+
+
+def all_venues_csv(request):  # Generate CSV file
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=venues.csv'
+
+    writer = csv.writer(response)
+
+    # Add column titles to the CSV file
+    writer.writerow(['Venue', 'Address', 'Website'])
+
+    venues = Venue.objects.all()
+    for venue in venues:
+        writer.writerow([venue.name, venue.address, venue.website])
+
     return response
 
 
