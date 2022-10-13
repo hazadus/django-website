@@ -12,10 +12,20 @@
                     <a href="{% url 'all_venues_pdf' %}" class="btn btn-primary">Download PDF</a>
                 </p>
                 <p>
-                    {% for venue in venue_list %}
+                    {% for venue in page_venues.object_list %}
                         {% include 'snippets/venue_card.html' with venue=venue %}
                         <br/>
                     {% endfor %}
+                </p>
+                <p>
+                    {% if page_venues.has_previous %}
+                        <a href="?page={{ page_venues.previous_page_number }}" class="btn btn-secondary">&blacktriangleleft;&nbsp;Prev</a>
+                    {% endif %}
+                    {% if page_venues.has_next %}
+                        <a href="?page={{ page_venues.next_page_number }}" class="btn btn-secondary">Next&nbsp;&blacktriangleright;</a>
+                    {% endif %}
+                <br/>
+                    {{ page_venues }}<br/>
                 </p>
             </div>
         </div>

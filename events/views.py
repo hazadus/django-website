@@ -4,11 +4,15 @@ import io
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+# Pagination related stuff:
+from django.core.paginator import Paginator
+# For downloads:
 from django.http import HttpResponse  # For different kinds of response - TXT/CSV
 from django.http import FileResponse  # For PDF download
-from reportlab.pdfgen import canvas  # PDF-related stuff
-from reportlab.lib.units import inch  # PDF-related stuff
-from reportlab.lib.pagesizes import A4  # PDF-related stuff
+# PDF-related stuff:
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import A4
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
@@ -53,10 +57,16 @@ def all_events(request):
 
 
 def all_venues(request):
-    venue_list = Venue.objects.all()
+    venue_list = Venue.objects.all().order_by('-date_added')
+
+    # Set up pagination
+    paginator = Paginator(venue_list, 2)
+    page_num = request.GET.get('page')
+    page_venues = paginator.get_page(page_num)
 
     return render(request, 'events/all_venues.html', {
-        'venue_list': venue_list
+        'venue_list': venue_list,
+        'page_venues': page_venues
     })
 
 
