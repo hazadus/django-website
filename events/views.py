@@ -117,3 +117,15 @@ def add_event(request):
         'form': form,
         'submitted': submitted
     })
+
+
+def edit_event(request, event_id):
+    event = Event.objects.get(pk=event_id)
+    form = EventForm(request.POST or None, instance=event)
+    if form.is_valid():
+        form.save()
+        return redirect('all_events')
+    return render(request, 'events/edit_event.html', {
+        'event': event,
+        'form': form
+    })

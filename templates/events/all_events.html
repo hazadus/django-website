@@ -23,6 +23,7 @@
                                 {% endfor %}
                             </p>
                             <a href="{{ event.venue.website }}" class="btn btn-primary">Сайт {{ event.venue.name }}</a>
+                            <a href="{% url 'edit_event' event.id %}" class="btn btn-primary">Edit event</a>
                         </div>
                     </div>
                     <br/>
