@@ -20,3 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('events.urls')),
 ]
+
+# Configure Admin panel titles
+admin.site.site_header = "Анель Управления Джанго"
+admin.site.site_title = "Анель Управления Джанго"
+admin.site.index_title = "Админка"
