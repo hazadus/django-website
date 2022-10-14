@@ -66,7 +66,8 @@ def all_venues(request):
 
     return render(request, 'events/all_venues.html', {
         'venue_list': venue_list,
-        'page_venues': page_venues
+        'page_venues': page_venues,
+        'page_nums': [number+1 for number in range(paginator.num_pages)]
     })
 
 
