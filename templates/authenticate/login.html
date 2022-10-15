@@ -5,26 +5,23 @@
         <div class="col-md-8">
             <div class="shadow-lg p-3 mb-5 bg-body rounded" style="margin-top:  16px;">
                 <h3>Login</h3>
-
-                <form action="" method="POST">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{  message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <form action="{% url 'login_user' %}" method="post">
                     {% csrf_token %}
-
-                    <input type="submit"  value="Submit" class="btn btn-primary">
-                </form>
-
-                <form>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        <label class="form-label">Username</label>
+                        <input name="username" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        <label class="form-label">Password</label>
+                        <input name="password" type="password" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
