@@ -5,3 +5,4 @@ lib/
 *.cfg
 db.sqlite3
 *.sh
+*.pyc

@@ -116,8 +116,8 @@
                         <a class="nav-link" href="{% url 'add_venue' %}">Add Venue</a>
                         <a class="nav-link" href="{% url 'all_events' %}">Events</a>
                         <a class="nav-link" href="{% url 'add_event' %}">Add Event</a>
-                        <a class="nav-link" href="#">Favorites</a>
                         <a class="nav-link" href="/admin/">Admin</a>
+                        <a class="nav-link" href="{% url 'login_user' %}">Login</a>
                     </div>
                 </div>
                 <form class="d-flex" role="search" method="post" action="{% url 'search_venues' %}">
