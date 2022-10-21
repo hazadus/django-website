@@ -3,10 +3,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm  # Sign Up form for new user
 
+from .forms import SignupUserForm
+
 
 def signup_user(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignupUserForm(request.POST)
         if form.is_valid():
             form.save()
             # Login new user after registration:
@@ -17,7 +19,7 @@ def signup_user(request):
             messages.success(request, 'You were successfully registered. Welcome!')
             return redirect('user_profile')
     else:
-        form = UserCreationForm()
+        form = SignupUserForm()
     return render(request, 'authenticate/signup.html', {
         'form': form
     })
