@@ -32,11 +32,16 @@ def home(request, year=datetime.now().year, month=datetime.now().strftime('%B'))
     event_list = Event.objects.all()
     venue_list = Venue.objects.all()
 
+    # Get events for current month
+    month_events = Event.objects.filter(event_date__year=year,
+                                        event_date__month=month_number)
+
     return render(request, 'events/home.html', {
         'year': year,
         'month': month,
         'month_number': month_number,
         'event_list': event_list,
+        'month_events': month_events,
         'venue_list': venue_list,
         'clndr': calender
     })

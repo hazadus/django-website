@@ -13,6 +13,16 @@
                         <li>{{ event }}</li>
                     {% endfor %}
                 </ul>
+                <h4>Events this month</h4>
+                {% if month_events %}
+                    <ul>
+                        {% for event in month_events %}
+                            <li>{{ event }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No events planned this month.</p>
+                {% endif %}
 
                 <h4>List of all places</h4>
                 <ul>
