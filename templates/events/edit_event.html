@@ -6,11 +6,15 @@
         <div class="col-md-9">
             <div class="shadow-lg p-3 mb-5 bg-body rounded" style="margin-top:  16px;">
                 <h3>Edit event – {{ event.name }}</h3>
+                {% if user.is_authenticated %}
                 <form action="{% url 'edit_event' event.id %}" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <input type="submit"  value="Submit" class="btn btn-primary">
                 </form>
+                {% else %}
+                <p>You must be logged in for this action.</p>
+                {% endif %}
             </div>
         </div>
 

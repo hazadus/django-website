@@ -8,7 +8,10 @@
                 <h3>{{ venue.name }}</h3>
                 <p>
                     [ <a href="#">Visited</a> | <a href="#">Add to list</a> |
-                    <a href="{% url 'edit_venue' venue.id %}">Edit venue</a> | Share ]
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'edit_venue' venue.id %}">Edit venue</a> |
+                    {% endif %}
+                    Share ]
                 </p>
                 {% include 'snippets/venue_tags.html' with venue=venue %}
                 <p>
