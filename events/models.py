@@ -21,6 +21,7 @@ class Venue(models.Model):
     how_to_get_there = models.TextField('How to get there (transport, etc.)', blank=True)
     website = models.URLField('Website URL', blank=True)
     banner_pic = models.CharField('Banner Picture Filename', max_length=64, blank=True)
+    venue_image = models.ImageField(null=True, blank=True, upload_to='images/')
     email = models.EmailField('Contact Email', blank=True)
     date_added = models.DateTimeField('Date Added', blank=False, default=datetime.now())
     tags = models.ManyToManyField(Tag, blank=True)

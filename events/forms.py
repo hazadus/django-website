@@ -8,7 +8,7 @@ class VenueForm(ModelForm):
         model = Venue
         # fields = '__all__'
         # Fields will appear in this order:
-        fields = ('name', 'address', 'city', 'website', 'description', 'how_to_get_there')
+        fields = ('name', 'address', 'city', 'venue_image', 'website', 'description', 'how_to_get_there')
         # Set Bootstrap classes for inputs:
         widgets = {
             'name': forms.TextInput(attrs={
