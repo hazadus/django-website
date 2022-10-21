@@ -1,6 +1,25 @@
 # django-website
 Basic Django website. For learning purposes.
 
+## Future improvements
+**High priority**
+- Add profile page.
+- Add user address, telegram id to profile.
+- Use static files - images, etc.
+
+**Medium priority**
+- Add image uploads.
+- Email/Telegram notifications.
+
+**Low priority**
+- Use email for logging in.
+- Restore lost password.
+- Verify email when registering.
+- Built-in JS for product form-filling from Discogs API.
+- Product categories (aka breadcrumbs) for shop.
+- Add Sentry.io watchdog.
+- Try with real db like MySQL.
+
 ## Deploying on Linux system using nginx/gunicorn
 Use following commands to deploy on Linux system:
 ```bash
@@ -96,6 +115,7 @@ HUP signal is received ([read more on this here](https://docs.gunicorn.org/en/la
 
 ## References
 - [Django Documentation](https://docs.djangoproject.com/en/4.1/)
+- [Widgets - Django Documentation](https://docs.djangoproject.com/en/4.1/ref/forms/widgets/)
 - [CodeMy Django Wednesdays Series](https://www.youtube.com/playlist?list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy)
 - [How to use Django with Gunicorn](https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/gunicorn/)
 - [Gunicorn Signal Handling](https://docs.gunicorn.org/en/latest/signals.html#reload-the-configuration)
