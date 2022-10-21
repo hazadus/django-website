@@ -3,12 +3,13 @@ Basic Django website. For learning purposes.
 
 ## Future improvements
 **High priority**
-- Add profile page.
+- ~~Add profile page.~~
 - Add user address, telegram id to profile.
 - Use static files - images, etc.
 
 **Medium priority**
-- Add image uploads.
+- ~~Add image uploads.~~
+- Add multiple images for one DB Model (eg product photos).
 - Email/Telegram notifications.
 
 **Low priority**

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -51,3 +51,18 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def days_until(self) -> str:
+        """
+        Days till event, or negative number if event time already passed.
+
+        :return: smth like '5 days' or '-9 days'
+        """
+        today = date.today()
+        days_till = self.event_date.date() - today  # Looks like '5 days, 0:00:00'
+
+        # Strip time:
+        days_till = str(days_till).split(',', 1)[0]  # = '5 days'
+
+        return days_till
