@@ -48,4 +48,9 @@ def logout_user(request):
 
 
 def user_profile(request):
+    # This is just to show off how to check 'superuser' status in code:
+    if request.user.is_superuser:
+        messages.success(request, 'You have SUPERUSER access rights.')
+    else:
+        messages.success(request, 'You have normal access rights.')
     return render(request, 'authenticate/profile.html', {})
