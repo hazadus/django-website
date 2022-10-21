@@ -1,6 +1,26 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm  # Sign Up form for new user
+
+
+def signup_user(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Login new user after registration:
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, 'You were successfully registered. Welcome!')
+            return redirect('user_profile')
+    else:
+        form = UserCreationForm()
+    return render(request, 'authenticate/signup.html', {
+        'form': form
+    })
 
 
 def login_user(request):
@@ -23,3 +43,7 @@ def logout_user(request):
     logout(request)
     messages.success(request, 'You were logged out.')
     return redirect('login_user')
+
+
+def user_profile(request):
+    return render(request, 'authenticate/profile.html', {})
